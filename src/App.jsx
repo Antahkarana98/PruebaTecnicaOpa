@@ -1,25 +1,34 @@
 import { useState, useEffect } from 'react'
 
+// se importan los componentes
 import Formulario from './components/Formulario'
 
+// se importan las imagenes de los elementos
 import casco from './assets/casco.webp'
 import pico from './assets/pico.webp'
 import cuerda from './assets/cuerda.webp'
 import mosqueton from './assets/mosqueton.webp'
 import cinturon from './assets/cinturon.webp'
+import Elemento from './components/Elemento'
+import ElementoAvemtura from './components/ElementoAvemtura'
 
 function App() {
 
+  // se crean los estados para guardar los datos de peso maximo, calorias minimas y resultado
   const [pesoMaximo, setPesoMaximo] = useState(0)
   const [caloriasMinimas, setCaloriasMinimas] = useState(0)
   const [resultado, setResultado] = useState([])
 
+
+  // se guarda en el local storage los datos de peso maximo, calorias minimas y resultado
   useEffect(() => {
     localStorage.setItem('pesoMaximo', JSON.stringify(pesoMaximo))
     localStorage.setItem('caloriasMinimas', JSON.stringify(caloriasMinimas))
     localStorage.setItem('resultado', JSON.stringify(resultado))
   }, [resultado]);
 
+
+  // se obtiene del local storage los datos de peso maximo, calorias minimas y resultado
   useEffect(() => {
     const pesoMaximoLocal = JSON.parse(localStorage.getItem('pesoMaximo'))
     const caloriasMinimasLocal = JSON.parse(localStorage.getItem('caloriasMinimas'))
@@ -53,48 +62,54 @@ function App() {
 					</header>
 
           <main>
+
+            {/* Se rederiza la lista de elementos */}
+
             <section className='grid grid-cols-2 my-5'>
               <div className='grid grid-cols-2 items-center'>
-                <img src={casco} alt='casco'className='border-e-2 mb-5' />
-                <div className='ps-3'>
-                  <p className='font-bold text-lg'>Casco</p>
-                  <p className='font-bold'>Peso: 5</p>
-                  <p className='font-bold'>Calorias: 3</p>
-                </div>
+                <Elemento
+                  img={casco}
+                  titulo='Casco'
+                  peso='Peso: 5'
+                  calorias='Calorias: 3'
+                />
               </div>
               <div className='grid grid-cols-2 items-center'>
-                <img src={pico} alt='pico' className='border-e-2 mb-5'/>
-                <div className='ps-3'>
-                  <p className='font-bold text-lg'>Pico</p>
-                  <p className='font-bold'>Peso: 3</p>
-                  <p className='font-bold'>Calorias: 5</p>
-                </div>
+                <Elemento
+                  img={pico}
+                  titulo='Pico'
+                  peso='Peso: 3'
+                  calorias='Calorias: 5'
+                />
               </div>
               <div className='grid grid-cols-2 items-center'>
-                <img src={cuerda} alt='cuerda' className='border-e-2 mb-5'/>
-                <div className='ps-3'>
-                  <p className='font-bold text-lg'>Cuerda</p>
-                  <p className='font-bold'>Peso: 5</p>
-                  <p className='font-bold'>Calorias: 2</p>
-                </div>
+                <Elemento
+                  img={cuerda}
+                  titulo='Cuerda'
+                  peso='Peso: 5'
+                  calorias='Calorias: 2'
+                />
               </div>
               <div className='grid grid-cols-2 items-center'>
-                <img src={mosqueton} alt='mosqueton' className='border-e-2 mb-5'/>
-                <div className='ps-3'>
-                  <p className='font-bold text-lg'>Mosqueton</p>
-                  <p className='font-bold'>Peso: 1</p>
-                  <p className='font-bold'>Calorias: 8</p>
-                </div>
+                <Elemento
+                  img={mosqueton}
+                  titulo='Mosqueton'
+                  peso='Peso: 1'
+                  calorias='Calorias: 8'
+                />
               </div>
               <div className='grid grid-cols-2 items-center'>
-                <img src={cinturon} alt='cinturon' className='border-e-2 mb-5'/>
-                <div className='ps-3'>
-                  <p className='font-bold text-lg'>Cinturon</p>
-                  <p className='font-bold'>Peso: 2</p>
-                  <p className='font-bold'>Calorias: 3</p>
-                </div>
+                <Elemento
+                  img={cinturon}
+                  titulo='Cinturon'
+                  peso='Peso: 2'
+                  calorias='Calorias: 3'
+                />
               </div>
             </section>
+
+            {/* Se rederizza el formulario para ingresar los datos */}
+
             <section>
               <Formulario
                 caloriasMinimas={caloriasMinimas}
@@ -105,6 +120,9 @@ function App() {
                 setResultado={setResultado}
               />
             </section>
+
+            {/* Se rederiza el resultado cuando este exista de lo contrario no */}
+
             { resultado.length ?  (
               <section className='mt-10'>
                 <p className='text-2xl font-bold'>Resultado: </p>
@@ -115,48 +133,48 @@ function App() {
                     <div key={i}>
                       {elemento === 'casco' ? (
                         <div className='border mx-1'>
-                          <img key={i} src={casco} alt="" className='border-b pb-2'/>
-                          <div className='p-2'>
-                            <p className='font-bold text-lg'>Casco</p>
-                            <p className='font-bold'>Peso: 5</p>
-                            <p className='font-bold'>Calorias: 3</p>
-                          </div>
+                          <ElementoAvemtura
+                            img={casco}
+                            titulo='Casco'
+                            peso='Peso: 5'
+                            calorias='Calorias: 3'
+                          />
                         </div>
                       ) : elemento === 'pico' ? (
                         <div className='border mx-1'>
-                          <img key={i} src={pico} alt="" className='border-b pb-2'/>
-                          <div className='p-2'>
-                            <p className='font-bold text-lg'>Pico</p>
-                            <p className='font-bold'>Peso: 5</p>
-                            <p className='font-bold'>Calorias: 3</p>
-                          </div>
+                          <ElementoAvemtura
+                            img={pico}
+                            titulo='Pico'
+                            peso='Peso: 3'
+                            calorias='Calorias: 5'
+                          />
                         </div>
                       ) : elemento === 'cuerda' ? (
                         <div className='border mx-1'>
-                          <img key={i} src={cuerda} alt="" className='border-b pb-2'/>
-                          <div className='p-2'>
-                            <p className='font-bold text-lg'>Cuerda</p>
-                            <p className='font-bold'>Peso: 5</p>
-                            <p className='font-bold'>Calorias: 3</p>
-                          </div>
+                          <ElementoAvemtura
+                            img={cuerda}
+                            titulo='Cuerda'
+                            peso='Peso: 5'
+                            calorias='Calorias: 2'
+                          />
                         </div>
                       ) : elemento === 'mosqueton' ? (
                         <div className='border mx-1'>
-                          <img key={i} src={mosqueton} alt="" className='border-b pb-2'/>
-                          <div className='p-2'>
-                            <p className='font-bold text-lg'>Mosqueton</p>
-                            <p className='font-bold'>Peso: 5</p>
-                            <p className='font-bold'>Calorias: 3</p>
-                          </div>
+                          <ElementoAvemtura
+                            img={mosqueton}
+                            titulo='Mosqueton'
+                            peso='Peso: 1'
+                            calorias='Calorias: 8'
+                          />
                         </div>
                       ) : elemento === 'cinturon' ? (
                         <div className='border mx-1'>
-                          <img key={i} src={cinturon} alt="" className='border-b pb-2'/>
-                          <div className='p-2'>
-                            <p className='font-bold text-lg'>Cinturon</p>
-                            <p className='font-bold'>Peso: 5</p>
-                            <p className='font-bold'>Calorias: 3</p>
-                          </div>
+                          <ElementoAvemtura
+                            img={cinturon}
+                            titulo='Cinturon'
+                            peso='Peso: 2'
+                            calorias='Calorias: 3'
+                          />
                         </div>
                       ) : null}
                     </div>

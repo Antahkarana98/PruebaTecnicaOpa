@@ -1,3 +1,5 @@
+// Aca estan todos los datos que se usan en la app
+
 const elementos = [
   { peso: 5, calorias: 3 },
   { peso: 3, calorias: 5 },

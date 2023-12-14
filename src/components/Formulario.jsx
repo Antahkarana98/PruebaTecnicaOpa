@@ -1,8 +1,12 @@
+//  Datos se necesita para el peso maximo y las calorias minimas
 import {elementos, elementosValores} from '../data/data'
 
-const Formulario = ({pesoMaximo, setPesoMaximo, caloriasMinimas,setCaloriasMinimas, resultado,setResultado}) => {
+// Componente Formulario, donde se tiene la logica de programacion, que reune los datos de peso maximo y calorias minimas
+// y los compara con los datos de elementos y elementosValores para mostrar el resultado
 
+const Formulario = ({pesoMaximo, setPesoMaximo, caloriasMinimas,setCaloriasMinimas,setResultado}) => {
 
+//  aca obtenemos la de los inputs de peso maximo y calorias minimas
   const handleChanges = (e) => {
     const {name, value} = e.target
 
@@ -13,6 +17,7 @@ const Formulario = ({pesoMaximo, setPesoMaximo, caloriasMinimas,setCaloriasMinim
     }
   }
 
+//  aca se hace la comparacion de los datos de peso maximo y calorias minimas con los datos de elementos y elementosValores
   const handleSumit = (e) => {
     e.preventDefault()
 
@@ -24,6 +29,7 @@ const Formulario = ({pesoMaximo, setPesoMaximo, caloriasMinimas,setCaloriasMinim
     const informacion = [pesoMaximoNumber, caloriasMinimasNumber]
     let areegloElementos = [];
 
+    // ciclo que evalua si el peso y las calorias son menores a los datos de elementos y elementosValores
     for (let i = 0; i < elementos.length; i++) {
       if(!elementos[i].calorias + sumaC <= informacion[1] && elementos[i].peso + sumaP <= informacion[0]) {
         sumaP += elementos[i].peso

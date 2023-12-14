@@ -49,7 +49,7 @@ function App() {
 	return (
 		<>
 			<div className='container mx-auto flex items-center justify-center'>
-				<div className='w-2/3 bg-white p-8 shadow-md '>
+				<div className='w-11/12 lg:w-2/3 bg-white p-8 shadow-md '>
 					<header>
 						<h1 className='text-center text-5xl font-bold'>
 							¿Estás listo para irte a{' '}
